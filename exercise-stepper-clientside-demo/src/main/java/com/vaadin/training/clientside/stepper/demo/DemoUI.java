@@ -8,9 +8,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.training.clientside.stepper.Stepper;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 
 @Theme("demo")
 @Title("Stepper Add-on Demo")
@@ -24,10 +22,7 @@ public class DemoUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-        VerticalLayout layout = new VerticalLayout();
-        layout.addComponent(new Label("Stepper component"));
-        layout.addComponent(new Stepper());
-        setContent(layout);
+        setContent(new Stepper());
     }
 
 }

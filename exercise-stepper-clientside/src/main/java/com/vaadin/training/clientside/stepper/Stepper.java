@@ -8,6 +8,17 @@ public class Stepper extends com.vaadin.ui.AbstractField<Integer> {
     private static final long serialVersionUID = 1L;
     private StepperServerRpc rpc = new StepperServerRpc() {
 
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public void setValue(Integer value) {
+            if (isReadOnly()) {
+                return;
+            }
+
+            Stepper.this.setValue(value);
+        }
+
     };
 
     public Stepper() {
@@ -23,5 +34,11 @@ public class Stepper extends com.vaadin.ui.AbstractField<Integer> {
     @Override
     public Class<? extends Integer> getType() {
         return Integer.class;
+    }
+
+    @Override
+    protected void setInternalValue(Integer newValue) {
+        super.setInternalValue(newValue);
+        getState().value = newValue;
     }
 }

@@ -20,7 +20,7 @@ public class StepperConnector extends AbstractFieldConnector {
 
             @Override
             public void onValueChange(ValueChangeEvent<Integer> event) {
-                // TODO: send the changed value to the server using rpc
+                rpc.setValue(event.getValue());
             }
         });
 
@@ -44,7 +44,9 @@ public class StepperConnector extends AbstractFieldConnector {
     @Override
     public void onStateChanged(StateChangeEvent stateChangeEvent) {
         super.onStateChanged(stateChangeEvent);
-        // TODO: set the value set on server side to the widget
+        if (stateChangeEvent.hasPropertyChanged("value")) {
+            getWidget().setValue(getState().value);
+        }
     }
 
 }
